@@ -1,0 +1,25 @@
+
+<h1> {{ question.question_text }}</h1>
+
+<ul>
+    {% for choice in question.choice_set.all %}
+    <li>
+        {{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}
+    </li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'polls:detail' question.id %}">Vote again?</a>
+<br>
+<a href="{% url 'polls:index' %}">Home</a>
+
+
+<!--
+     {{ choice.votes|pluralize }}
+     이중 중괄호는 template에서 variable을 나타냄
+     이 variable뒤에 |는 filter 라는 기능인데
+     variable을 특정 형태로 바꾸어줌
+     ex) choice.vote가 1인경우 -> 1vote
+         choice.vote가 2인이상인경우 -> 2vote(s)
+     이렇게 표기되는 기능
+-->
